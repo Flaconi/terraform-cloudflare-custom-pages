@@ -11,7 +11,7 @@ TF_MODULES  = $(sort $(dir $(wildcard $(CURRENT_DIR)modules/*/)))
 # -------------------------------------------------------------------------------------------------
 # Container versions
 # -------------------------------------------------------------------------------------------------
-TF_VERSION      = 1.3.9
+TF_VERSION      = 1.5.7
 TFDOCS_VERSION  = 0.16.0-0.34
 FL_VERSION      = latest-0.8
 JL_VERSION      = 1.6.0-0.14
@@ -77,7 +77,7 @@ test: _pull-tf
 		echo "------------------------------------------------------------"; \
 		echo "# Terraform init"; \
 		echo "------------------------------------------------------------"; \
-		if docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" hashicorp/terraform:$(TF_VERSION) \
+		if docker run $$(tty -s && echo "-it" || echo) --rm --network host -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" hashicorp/terraform:$(TF_VERSION) \
 			init \
 				-lock=false \
 				-upgrade \
@@ -88,7 +88,7 @@ test: _pull-tf
 			echo "OK"; \
 		else \
 			echo "Failed"; \
-			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
+			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=sh hashicorp/terraform:$(TF_VERSION) -c "rm -rf .terraform*" || true; \
 			exit 1; \
 		fi; \
 		echo; \
@@ -100,10 +100,10 @@ test: _pull-tf
 				$(ARGS) \
 				.; then \
 			echo "OK"; \
-			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
+			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=sh hashicorp/terraform:$(TF_VERSION) -c "rm -rf .terraform*" || true; \
 		else \
 			echo "Failed"; \
-			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
+			docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=sh hashicorp/terraform:$(TF_VERSION) -c "rm -rf .terraform*" || true; \
 			exit 1; \
 		fi; \
 		echo; \
@@ -235,7 +235,7 @@ _lint-fmt: _pull-tf
 	@echo "# *.tf files"
 	@echo "------------------------------------------------------------"
 	@if docker run $$(tty -s && echo "-it" || echo) --rm -v "$(CURRENT_DIR):/t:ro" --workdir "/t" hashicorp/terraform:$(TF_VERSION) \
-		fmt -recursive -check=true -diff=true -write=false -list=true .; then \
+		fmt -check=true -diff=true -write=false -list=true .; then \
 		echo "OK"; \
 	else \
 		echo "Failed"; \
