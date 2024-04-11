@@ -1,9 +1,10 @@
 # Terraform module: Cloudflare Custom Pages
 
 
-[![lint](https://github.com/flaconi/terraform-cloudflare-custompages/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-cloudflare-custompages/actions?query=workflow%3Alint)
-[![test](https://github.com/flaconi/terraform-cloudflare-custompages/workflows/test/badge.svg)](https://github.com/flaconi/terraform-cloudflare-custompages/actions?query=workflow%3Atest)
-[![Tag](https://img.shields.io/github/tag/flaconi/terraform-cloudflare-custompages.svg)](https://github.com/flaconi/terraform-cloudflare-custompages/releases)
+[![lint](https://github.com/flaconi/terraform-cloudflare-custom-pages/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-cloudflare-custom-pages/actions?query=workflow%3Alint)
+[![test](https://github.com/flaconi/terraform-cloudflare-custom-pages/workflows/test/badge.svg)](https://github.com/flaconi/terraform-cloudflare-custom-pages/actions?query=workflow%3Atest)
+[![Tag](https://img.shields.io/github/tag/flaconi/terraform-cloudflare-custom-pages.svg)](https://github.com/flaconi/terraform-cloudflare-custom-pages/releases)
+[![Terraform](https://img.shields.io/badge/Terraform--registry-cloudflare--page--rules-brightgreen.svg)](https://registry.terraform.io/modules/flaconi/custom-pages/cloudflare/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Example
