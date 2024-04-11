@@ -5,5 +5,5 @@ output "domain" {
 
 output "custom_pages" {
   description = "Created Cloudflare custom pages for the given zone."
-  value       = cloudflare_custom_pages.custom_pages
+  value       = cloudflare_custom_pages.this
 }
