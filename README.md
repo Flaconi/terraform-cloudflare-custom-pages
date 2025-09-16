@@ -86,4 +86,4 @@ Default: `[]`
 
 **[MIT License](LICENSE)**
 
-Copyright (c) 2022 **[Flaconi GmbH](https://github.com/flaconi)**
+Copyright (c) 2022-2025 **[Flaconi GmbH](https://github.com/flaconi)**
