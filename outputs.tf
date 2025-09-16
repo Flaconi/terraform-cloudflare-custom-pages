@@ -1,6 +1,6 @@
 output "domain" {
   description = "Current zone information."
-  value       = data.cloudflare_zones.domain
+  value       = local.zone_id
 }
 
 output "custom_pages" {
