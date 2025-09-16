@@ -12,9 +12,9 @@ variable "domain" {
 variable "custom_pages" {
   description = "List of Cloudflare error page objects."
   type = list(object({
-    type  = string
-    url   = string
-    state = optional(string, "customized")
+    identifier = string
+    url        = string
+    state      = optional(string, "customized")
   }))
   default = []
 }

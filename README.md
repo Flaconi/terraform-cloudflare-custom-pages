@@ -25,7 +25,7 @@ domain = "<domain.tld>"
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 4.52.0 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 5.10 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -35,7 +35,7 @@ domain = "<domain.tld>"
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
-| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | 4.52.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 5.10 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
@@ -68,9 +68,9 @@ Type:
 
 ```hcl
 list(object({
-    type  = string
-    url   = string
-    state = optional(string, "customized")
+    identifier = string
+    url        = string
+    state      = optional(string, "customized")
   }))
 ```
 
